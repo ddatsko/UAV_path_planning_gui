@@ -1,0 +1,59 @@
+{
+  "planning-algorithm": "darp",
+  "n-uavs": "3",
+  "altitude": "10",
+  "rotations-per-cell": "3",
+  "sweeping-step": "6",
+  "min-pieces-per-uav": "1",
+  "init-rotation": "0",
+  "override-drone-spec": true,
+  "uav-area": "0.07",
+  "propeller-radius": "0.19",
+  "n-propellers": "4",
+  "uav-mass": "3.2",
+  "acceleration": "2",
+  "cells-in-series": "",
+  "cell-capacity": "",
+  "main-save-config": "on",
+  "experiment-name": "temesvar_simple_6",
+  "fly-zone": [
+    [
+      49.36361728293048,
+      14.259512480748565
+    ],
+    [
+      49.363644795106396,
+      14.262028392804535
+    ],
+    [
+      49.36311332701619,
+      14.264340456975372
+    ],
+    [
+      49.361721089206966,
+      14.262008276236923
+    ],
+    [
+      49.36174641885421,
+      14.26096489693013
+    ],
+    [
+      49.36216391943504,
+      14.260030817640693
+    ],
+    [
+      49.36208269052025,
+      14.259054158283146
+    ],
+    [
+      49.36361728293048,
+      14.259512480748565
+    ]
+  ],
+  "no-fly-zones": [],
+  "start-point": [
+    49.362348212496755,
+    14.261290785325457
+  ],
+  "override-battery-model": false
+}

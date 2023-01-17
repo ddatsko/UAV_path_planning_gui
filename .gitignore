@@ -1,0 +1,9 @@
+*.jar
+*.yaml
+.idea
+__pycache__
+energy_calculation
+experiments
+**.csv
+**.json
+**._**

@@ -1,0 +1,66 @@
+
+#map, html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+#panel {
+    width: 190px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    float: right;
+    margin: 10px;
+}
+
+#color-palette {
+    clear: both;
+}
+
+#path-planning-settings {
+    margin-top: 50px;
+}
+
+.color-button {
+    width: 14px;
+    height: 14px;
+    font-size: 0;
+    margin: 2px;
+    float: left;
+    cursor: pointer;
+}
+
+fieldset {
+    border: grey solid medium;
+    margin-right: 10px;
+    margin-left: 0;
+}
+
+.color-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+#delete-button {
+    margin-top: 5px;
+}
+
+#generate-button {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #b5ff9e;
+    border: #b5ff9e solid 3px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+#generate-button:hover {
+    border: black solid 3px;
+}

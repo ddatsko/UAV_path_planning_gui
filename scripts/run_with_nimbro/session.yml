@@ -1,0 +1,24 @@
+name: simulation
+root: ./
+startup_window: gui_app
+windows:
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+  - path_generation:
+      layout: tiled
+      panes:
+        - waitForRos; sleep 5; roslaunch thesis_path_generator thesis_path_generator.launch
+  - gui_app:
+      layout: tiled
+      panes:
+        - python ../../app.py 
+  - nimbro:
+      layout: tiled
+      panes:
+        - waitForRos; sleep 5; rosrun mrs_uav_general run_nimbro.py custom_configs/nimbro.yaml custom_configs/uav_names.yaml
+  - layout:
+      layout: tiled
+      panes:
+        - ~/.i3/layout_manager.sh ./layout.json

@@ -1,0 +1,47 @@
+{
+  "planning-algorithm": "own",
+  "n-uavs": "3",
+  "altitude": "8",
+  "rotations-per-cell": "3",
+  "sweeping-step": "8",
+  "min-pieces-per-uav": "1",
+  "init-rotation": "0",
+  "override-drone-spec": true,
+  "uav-area": "0.07",
+  "propeller-radius": "0.19",
+  "n-propellers": "4",
+  "uav-mass": "3.2",
+  "acceleration": "2",
+  "cells-in-series": "",
+  "cell-capacity": "",
+  "main-save-config": "on",
+  "experiment-name": "rect_8_0",
+  "fly-zone": [
+    [
+      49.36412465688098,
+      14.260361157394046
+    ],
+    [
+      49.36229224287628,
+      14.260428212619418
+    ],
+    [
+      49.36228176176093,
+      14.26239158961832
+    ],
+    [
+      49.36413863117732,
+      14.262335263229007
+    ],
+    [
+      49.36412465688098,
+      14.260361157394046
+    ]
+  ],
+  "no-fly-zones": [],
+  "start-point": [
+    49.36314644627111,
+    14.260587804055804
+  ],
+  "override-battery-model": false
+}
