@@ -51,6 +51,8 @@ def get_path_properties(path: List[Tuple[float, float, float]]):
         for p in path:
             print(f'{p[0]},{p[1]},', file=f)
 
+    if not os.path.exists(ENERGY_EXECUTABLE_PATH):
+        return 0, 0, 0, 0
     output = subprocess.check_output([ENERGY_EXECUTABLE_PATH, TEMP_CSV_FILE])
     os.remove(TEMP_CSV_FILE)
     return tuple(map(float, output.decode('utf-8').split('\n')[-2].split(',')))
@@ -81,6 +83,8 @@ def compose_path_messages(json_data: dict, paths_points: List[List[List]]) -> Li
     common_message = PathSrvRequest()
 
     last_own_paths = get_last_own_paths()
+    if last_own_paths is None:
+        return None
     
     common_message.path.header = last_own_paths[0].header
 

@@ -47,60 +47,60 @@ def load_polygon():
 
 @app.route('/generate_trajectories', methods=['POST'])
 def generate_trajectories():
-    try:
-        json_data = json.loads(request.data.decode('utf-8'))
-        if 'main-save-config' in json_data.keys() and json_data['main-save-config'] and json_data['experiment-name']:
-            save_config(json_data['experiment-name'], json_data)
-            return "", 200
+    # try:
+    json_data = json.loads(request.data.decode('utf-8'))
+    if 'main-save-config' in json_data.keys() and json_data['main-save-config'] and json_data['experiment-name']:
+        save_config(json_data['experiment-name'], json_data)
+        return "", 200
 
-        paths = []
-        algorithm = json_data['planning-algorithm']
-        if algorithm == 'own':
-            paths = plan_paths_own(json_data)
-        elif algorithm == 'gtsp':
-            paths = plan_path_gtsp(json_data)
-        elif algorithm == 'popcorn':
-            paths = plan_paths_wadl(json_data)
-        elif algorithm == 'darp':
-            paths = plan_optimized_darp_paths(json_data)
-        elif algorithm == 'all':
-            experiment_directory = input("Enter the directory to save experiment to: ")
-            # paths = compare_algorithm(json_data, write_data=True, experiment_dir=experiment_directory)
+    paths = []
+    algorithm = json_data['planning-algorithm']
+    if algorithm == 'own':
+        paths = plan_paths_own(json_data)
+    elif algorithm == 'gtsp':
+        paths = plan_path_gtsp(json_data)
+    elif algorithm == 'popcorn':
+        paths = plan_paths_wadl(json_data)
+    elif algorithm == 'darp':
+        paths = plan_optimized_darp_paths(json_data)
+    elif algorithm == 'all':
+        experiment_directory = input("Enter the directory to save experiment to: ")
+        # paths = compare_algorithm(json_data, write_data=True, experiment_dir=experiment_directory)
 
-        if not paths:
-            return 'Error: No paths were generated', 500
+    if not paths:
+        return 'Error: No paths were generated', 500
 
-        # If paths were produced by not own algorithm -- create a list of PathSrv messages o
-        global last_generated_paths_method, last_generated_paths_global
-        last_generated_paths_method = algorithm
-        if algorithm != 'own':
-            last_generated_paths_global = compose_path_messages(json_data, paths)
+    # If paths were produced by not own algorithm -- create a list of PathSrv messages o
+    global last_generated_paths_method, last_generated_paths_global
+    last_generated_paths_method = algorithm
 
-        energies = []
-        times = []
-        lengths = []
+    last_generated_paths_global = compose_path_messages(json_data, paths)
 
-        for path in paths:
-            energy, time, length, turns = get_path_properties(path)
-            energies.append(energy)
-            times.append(time)
-            lengths.append(length)
+    energies = []
+    times = []
+    lengths = []
 
-        print(f"Total energy: {sum(map(float, energies))}",
-              f"Total time: {sum(map(float, times))}",
-              f"Total distance: {sum(map(float, lengths))}", sep='\n')
+    for path in paths:
+        energy, time, length, turns = get_path_properties(path)
+        energies.append(energy)
+        times.append(time)
+        lengths.append(length)
 
-        response = json.dumps({
-            'success': True,
-            'path': paths,
-            'energies': energies,
-            'times': times,
-            'lengths': lengths
-        })
-        return response
-    except Exception as e:
-        print("ERROR: ", e, sep='\n')
-        return f"Error: {e}", 500
+    print(f"Total energy: {sum(map(float, energies))}",
+          f"Total time: {sum(map(float, times))}",
+          f"Total distance: {sum(map(float, lengths))}", sep='\n')
+
+    response = json.dumps({
+        'success': True,
+        'path': paths,
+        'energies': energies,
+        'times': times,
+        'lengths': lengths
+    })
+    return response
+    # except Exception as e:
+    #     print("ERROR: ", e, sep='\n')
+    #     return f"Error: {e}", 500
 
 
 def load_paths_thread(path, service, res, ind):
